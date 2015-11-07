@@ -11,3 +11,7 @@
 ## Waffle Board
 
 https://waffle.io/LauraBuzek/oktrending
+
+## Slack Channel
+
+https://oktrending.slack.com/messages/general/details/

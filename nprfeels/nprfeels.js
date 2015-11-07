@@ -21,5 +21,10 @@ if (Meteor.isServer) {
     // code to run on server at startup
     var watson = Meteor.npmRequire('watson-developer-cloud');
     console.log(watson);
+
+    var stuff = $.ajax('http://api.npr.org/query?date.current&apiKey=MDExMDE5NDY5MDEzNjI4NzgwNTc3MjMxMw001').done(function()
+      {
+        debugger
+      });
   });
 }

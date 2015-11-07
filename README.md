@@ -6,6 +6,7 @@
 - Mandy Dols
 - Kelly Ripple
 - Maddie Rohrbaugh
+- Jenny Mandl
 
 ## Waffle Board
 

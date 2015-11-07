@@ -19,5 +19,7 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
+    var watson = Meteor.npmRequire('watson-developer-cloud');
+    console.log(watson);
   });
 }

@@ -12,28 +12,20 @@ if (Meteor.isClient) {
 
   Template.retrieve.events({
     'click #fetchButton': function () {
-      // var result = Meteor.call('request');
-
-      Meteor.call('request', function(error, data){
-        Session.set('nprData', data);
- 
-
-      });
-
+      // Meteor.call('requestArticles');
     }
   });
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // var watson = Meteor.npmRequire('watson-developer-cloud');
-    // console.log(watson);
 
-    var url = 'http://api.npr.org/query?date.current&numResults=20&apiKey=MDExMDE5NDY5MDEzNjI4NzgwNTc3MjMxMw001&output=JSON&fields=title,text,teaser,image';
+    // Posts.remove({});
 
     Meteor.methods({
-      'request': function() {
-        return Meteor.http.call('GET', url, {}, function(error, jsonData) {
+
+      'requestArticles': function() {
+        Meteor.http.call('GET', 'http://api.npr.org/query?date.current&numResults=20&apiKey=MDExMDE5NDY5MDEzNjI4NzgwNTc3MjMxMw001&output=JSON&fields=title,text,teaser,image', {}, function(error, jsonData) {
 
           var stories = jsonData['data']['list']['story'];
           for(var i = 0; i < stories.length; i++){
@@ -48,40 +40,42 @@ if (Meteor.isServer) {
             for(var j = 0; j < paragraphs.length; j++) {
               storyText += paragraphs[j]['$text'];
             };
+            
+            var post = {
+              "id": storyId,
+              "url": storyUrl,
+              "title": storyTitle,
+              "teaser": storyTeaser
+            };
 
-            // analyze text
+            Meteor.call('requestAnalysis',storyText,post);
+            
+          }                
+        });
+      },
+      
 
-            var url = 'https://gateway.watsonplatform.net/tone-analyzer-experimental/api/v1/tone';
-            var authKey = "0dbedc88-6434-4ecc-921e-952eba4261c1:v6zxf14AqPDs"
+      'requestAnalysis': function(storyText, post) {
+          
 
-            Meteor.http.call('POST', url, { auth: authKey, data: {"text": storyText},
-              headers: {"content-type":"text/plain"}
-            }, function(error, data) {
-              // console.log(error);
-              // console.log(data['data']['children'][0]);
-              // console.log(data['data']['children'][0]['children']);
-            });
+          Meteor.http.post('https://gateway.watsonplatform.net/tone-analyzer-experimental/api/v1/tone', { 
+          auth: "0dbedc88-6434-4ecc-921e-952eba4261c1:v6zxf14AqPDs", 
+          data: { "text": storyText },
+          headers: { "content-type":"text/plain" }
+          }, function(error, data) {
+            // do stuffs
+            
+            var toneData = data['data']['children'][0]['children'];
+            post["cheer"] = toneData[0]['normalized_score'];
+            post["negative"] = toneData[1]['normalized_score'];
+            post["anger"] = toneData[2]['normalized_score'];
 
-          }
-        
-          // example post:
-          // {
-          //   id: storyId,
-          //   url: storyUrl,
-          //   title: storyTitle,
-          //   teaser: storyTeaser,
-          //   tonedatastuf: ?????????????????????
-          // }
-
-          // _.each(nprPosts, function(post){
-          //   Posts.upsert(post);
-          // });
+            Posts.insert(post);
         });
       }
-    });
 
 
+    }); 
+  });
 
-    
-  }); 
 }

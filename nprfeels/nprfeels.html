@@ -29,20 +29,25 @@
 
 <body>
 	<header class="zz">
-		<h1 class="h1">Mood Ring</h1>
+		<h1 id="page-title" class="h1">Mood Ring</h1>
 	</header>
+	<div class="container">
+
+	<div class="top-section">
 	<form action="" class="formFields">
-		<label for="topic">Topic</label>
+		<label for="topic">Topic:</label>
 		<input type="text" name="topicSearch" id="topic" class="input">
-		<label for="date">Date</label>
+		<label hidden for="submit">Submit</label>
+		<input id="submit" type="submit" class="input">
+		<label for="date">Date:</label>
 		<select id="date" class="input">
 	  		<option value="today">Today</option>
 			<option value="lastWeek">Last Week</option>
 			<option value="lastMonth">Last Month</option>
 		</select>
-		<label hidden for="submit">Submit</label>
-		<input id="submit" type="submit" class="input">
 	</form>
+	</div>
+
 	<div class="leftCol">
 		<div class="chart"></div>
 		<!-- <div id="donutchart" class="chart"></div> -->

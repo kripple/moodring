@@ -46,26 +46,18 @@ if (Meteor.isServer) {
             storyText += paragraphs[i]['$text'];
           };
 
-          console.log(storyText);
+          // analyze text
 
-
-      
-          // var data = xml2js.parseString(xmlData, function(error, results) {
-          //   console.log('Results:');
-          //   console.log(error);
-          //   console.log(results);
-          // });
-
-
-          // parse data, add to db
+        
           // example post:
           // {
-          //   title: 'My First entry',
-          //   slug: 'my-first-entry',
-          //   description: 'Lorem ipsum dolor sit amet.',
-          //   text: 'Lorem ipsum dolor sit amet...',
-          //   author: 'John Doe'
+          //   id: storyId,
+          //   url: storyUrl,
+          //   title: storyTitle,
+          //   teaser: storyTeaser,
+          //   tonedatastuf: ?????????????????????
           // }
+
           // _.each(nprPosts, function(post){
           //   Posts.upsert(post);
           // });

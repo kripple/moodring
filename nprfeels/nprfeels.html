@@ -47,7 +47,12 @@
 		<div class="chart"></div>
 		<!-- <div id="donutchart" class="chart"></div> -->
 	</div>
+	{{> retrieve}}
+</body>
+
+<template name="retrieve">
 	<div class="rightCol">
+		<p>nprData: {{nprData}}</p>
 		<article>
 			<a href="#">
 				<h2 class="h2">Article Title</h2>
@@ -73,5 +78,5 @@
 			</a>
 		</article>
 	</div>
-</body>
+</template>
 

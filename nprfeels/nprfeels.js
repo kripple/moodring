@@ -2,13 +2,16 @@ Posts = new Mongo.Collection('posts');
 
 if (Meteor.isClient) {
 
-  Meteor.call('requestArticles');
-
-  Session.setDefault('nprData', "nothing yet");
+  Session.setDefault('nprData', Posts.find().fetch());
+  Session.setDefault('title', 'None');
+  Session.setDefault('link', '#');
+  Session.setDefault('stub', 'text');
 
   Template.retrieve.helpers({
     nprData: function () {
-      return Session.get('nprData');
+      Session.set('title', nprData[0]);
+      Session.get('title');
+
     }
   });
 

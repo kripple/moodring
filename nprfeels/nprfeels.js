@@ -2,6 +2,8 @@ Posts = new Mongo.Collection('posts');
 
 if (Meteor.isClient) {
 
+  Meteor.call('requestArticles');
+
   Session.setDefault('nprData', "nothing yet");
 
   Template.retrieve.helpers({
@@ -12,15 +14,13 @@ if (Meteor.isClient) {
 
   Template.retrieve.events({
     'click #fetchButton': function () {
-      // Meteor.call('requestArticles');
+      Meteor.call('requestArticles');
     }
   });
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-
-    // Posts.remove({});
 
     Meteor.methods({
 
@@ -40,7 +40,7 @@ if (Meteor.isServer) {
             for(var j = 0; j < paragraphs.length; j++) {
               storyText += paragraphs[j]['$text'];
             };
-            
+
             var post = {
               "id": storyId,
               "url": storyUrl,
@@ -49,22 +49,22 @@ if (Meteor.isServer) {
             };
 
             Meteor.call('requestAnalysis',storyText,post);
-            
-          }                
+
+          }
         });
       },
-      
+
 
       'requestAnalysis': function(storyText, post) {
-          
 
-          Meteor.http.post('https://gateway.watsonplatform.net/tone-analyzer-experimental/api/v1/tone', { 
-          auth: "0dbedc88-6434-4ecc-921e-952eba4261c1:v6zxf14AqPDs", 
+
+          Meteor.http.post('https://gateway.watsonplatform.net/tone-analyzer-experimental/api/v1/tone', {
+          auth: "0dbedc88-6434-4ecc-921e-952eba4261c1:v6zxf14AqPDs",
           data: { "text": storyText },
           headers: { "content-type":"text/plain" }
           }, function(error, data) {
             // do stuffs
-            
+
             var toneData = data['data']['children'][0]['children'];
             post["cheer"] = toneData[0]['normalized_score'];
             post["negative"] = toneData[1]['normalized_score'];
@@ -75,7 +75,7 @@ if (Meteor.isServer) {
       }
 
 
-    }); 
+    });
   });
 
 }

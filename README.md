@@ -15,7 +15,7 @@ Filter news output from NPR based on sentiment analysis and graph trends based o
 - Laura Buzek
 - Mandy Dols
 - Kelly Ripple
-- Maddie Rohrbaugh
+- Madi Rohrbaugh
 
 ## Waffle Board
 

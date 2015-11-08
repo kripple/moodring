@@ -1,35 +1,77 @@
 <head>
-  <title>nprfeels</title>
+  <title>Mood Ring</title>
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Sad',     0],
+          ['Angry',      2],
+          ['Negative',  2],
+          ['Optimistic', 0],
+          ['Cheerful',    7]
+        ]);
+
+        var options = {
+          title: "Today's Mood",
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
- <!--  {{> entry}}
-
- 	{{> messages}} -->
-
-  {{> retrieve}}
+	<header class="zz">
+		<h1 class="h1">Mood Ring</h1>
+	</header>
+	<form action="" class="formFields">
+		<label for="topic">Topic</label>
+		<input type="text" name="topicSearch" id="topic" class="input">
+		<label for="date">Date</label>
+		<select id="date" class="input">
+	  		<option value="today">Today</option>
+			<option value="lastWeek">Last Week</option>
+			<option value="lastMonth">Last Month</option>
+		</select>
+		<label hidden for="submit">Submit</label>
+		<input id="submit" type="submit" class="input">
+	</form>
+	<div class="leftCol">
+		<div class="chart"></div>
+		<!-- <div id="donutchart" class="chart"></div> -->
+	</div>
+	<div class="rightCol">
+		<article>
+			<a href="#">
+				<h2 class="h2">Article Title</h2>
+				<p>This is where the article teaser text will go...</p>
+			</a>
+		</article>
+		<article>
+			<a href="#">
+				<h2 class="h2">Article Title</h2>
+				<p>This is where the article teaser text will go...</p>
+			</a>
+		</article>
+		<article>
+			<a href="#">
+				<h2 class="h2">Article Title</h2>
+				<p>This is where the article teaser text will go...</p>
+			</a>
+		</article>
+		<article>
+			<a href="#">
+				<h2 class="h2">Article Title</h2>
+				<p>This is where the article teaser text will go...</p>
+			</a>
+		</article>
+	</div>
 </body>
 
-
-<template name="retrieve">
-	<button value="Fetch" id="fetchButton">Click Me</button> 
-	<p>Here is your data: {{nprData}}</p>
-</template>
-
-
-<!-- <template name="entry">
-    <p>
-    <input type="text" id="name" placeholder="your name">
-    <input type="text" id="messageBox" placeholder="your message"></p>
-</template>
-
-<template name="messages">
-    {{#each messages}}
-        {{> message}} 
-    {{/each}}
-</template>
-
-<template name="message">
-    <p><strong>{{name}}:</strong>{{message}}</p>
-</template> -->

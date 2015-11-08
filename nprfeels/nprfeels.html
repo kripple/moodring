@@ -4,16 +4,32 @@
 
 <body>
   <h1>Welcome to Meteor!</h1>
+ <!--  {{> entry}}
+
+ 	{{> messages}} -->
 
   {{> retrieve}}
 </body>
 
-<!--<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>-->
 
 <template name="retrieve">
 	<button value="Fetch" id="fetchButton">Click Me</button> 
 	<p>Here is your data: {{nprData}}</p>
 </template>
+
+
+<!-- <template name="entry">
+    <p>
+    <input type="text" id="name" placeholder="your name">
+    <input type="text" id="messageBox" placeholder="your message"></p>
+</template>
+
+<template name="messages">
+    {{#each messages}}
+        {{> message}} 
+    {{/each}}
+</template>
+
+<template name="message">
+    <p><strong>{{name}}:</strong>{{message}}</p>
+</template> -->

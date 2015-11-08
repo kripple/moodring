@@ -48,6 +48,19 @@ if (Meteor.isServer) {
 
           // analyze text
 
+          var url = 'https://gateway.watsonplatform.net/tone-analyzer-experimental/api/v1/tone';
+
+          // console.log(storyText);
+
+          Meteor.http.call('POST', url, 
+            { auth: "0dbedc88-6434-4ecc-921e-952eba4261c1:v6zxf14AqPDs", 
+            data: {"text": storyText},
+            headers: {"content-type":"text/plain"}
+          }, function(error, data) {
+            // console.log(error);
+            console.log(data['data']['children'][0]);
+            console.log(data['data']['children'][0]['children']);
+          });
         
           // example post:
           // {

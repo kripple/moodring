@@ -12,6 +12,10 @@ Filters news articles and graph trends based on time frame, topic, or tone.
 - NPR API
 - MongoDB
 
+## Tone Analyzer Demo
+
+https://tone-analyzer-demo.mybluemix.net/
+
 ## Team Members
 
 - Laura Buzek
@@ -29,4 +33,4 @@ https://oktrending.slack.com/messages/general/details/
 
 ## Next Steps
 
-- Integrate multiple news outlets for comparative analysis
+Integrate multiple news outlets for comparative analysis

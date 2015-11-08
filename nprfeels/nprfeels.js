@@ -1,28 +1,15 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+
   Session.setDefault('nprData', "nothing yet");
-/*
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });*/
 
-  Template.refresh.helpers({
+  Template.retrieve.helpers({
     nprData: function () {
       return Session.get('nprData');
     }
   });
 
-  Template.refresh.events({
+  Template.retrieve.events({
     'click #fetchButton': function () {
       Meteor.call('checkNpr', function(err, respJson) {
         if(err) {
@@ -40,9 +27,8 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
-    var watson = Meteor.npmRequire('watson-developer-cloud');
-    console.log(watson);
+    // var watson = Meteor.npmRequire('watson-developer-cloud');
+    // console.log(watson);
 
     Meteor.methods({
       'checkNpr': function () {

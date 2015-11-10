@@ -1,6 +1,8 @@
 # MoodRing
 
-Filter news output from NPR based on sentiment analysis and graph trends based on time frame, location, or subject.
+Technica 2015 Hackaton winner for "Most Innovative Use of Web Technologies."
+
+Filters news articles and graph trends based on time frame, topic, or tone.
 
 ## Technologies
 
@@ -8,7 +10,11 @@ Filter news output from NPR based on sentiment analysis and graph trends based o
 - Meteor
 - IBM Watson Tone Analyzer
 - NPR API
-- TBD
+- MongoDB
+
+## Tone Analyzer Demo
+
+https://tone-analyzer-demo.mybluemix.net/
 
 ## Team Members
 
@@ -24,3 +30,7 @@ https://waffle.io/LauraBuzek/oktrending
 ## Slack Channel
 
 https://oktrending.slack.com/messages/general/details/
+
+## Next Steps
+
+Integrate multiple news outlets for comparative analysis
